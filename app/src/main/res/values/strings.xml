@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Oblig 1 Quiz App</string>
+    <string name="galleryButtonText">Gallery</string>
+    <string name="quizButtonText">Quiz</string>
 </resources>
