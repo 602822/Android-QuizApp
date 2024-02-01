@@ -8,18 +8,18 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 public class ImageTextAdapter extends BaseAdapter {
 
     private Context context;
     private List<Dog> dogs;
-    private int layoutResource;
 
-    public ImageTextAdapter(Context context, List<Dog> dataList, int layoutResource) {
+    public ImageTextAdapter(Context context, List<Dog> dogs) {
         this.context = context;
-        this.dogs = dataList;
-        this.layoutResource = layoutResource;
+        this.dogs = dogs;
     }
 
     @Override
@@ -44,7 +44,7 @@ public class ImageTextAdapter extends BaseAdapter {
 
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(layoutResource, parent, false);
+            view = inflater.inflate(R.layout.grid_item, parent, false);
 
             viewHolder = new ViewHolder();
             viewHolder.imageView = view.findViewById(R.id.imageView);
@@ -57,7 +57,16 @@ public class ImageTextAdapter extends BaseAdapter {
 
         // Set data to views based on the position
         Dog data = dogs.get(position);
-        viewHolder.imageView.setImageResource(data.getImageResource());
+
+        // Check if the Dog instance has a resource ID
+        if (data.getImageResource() != 0) {
+            // Use Glide to load the image from resource ID into an ImageView
+            Glide.with(context).load(data.getImageResource()).into(viewHolder.imageView);
+        } else if (data.getImageUri() != null) {
+            // Use Glide to load the image from Uri into an ImageView
+            Glide.with(context).load(data.getImageUri()).into(viewHolder.imageView);
+        }
+
         viewHolder.textView.setText(data.getImageText());
 
         return view;

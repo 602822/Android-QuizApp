@@ -11,6 +11,7 @@ public class DogList
         dogs.add(new Dog(R.drawable.goldenretriever, "Golden Retriever"));
         dogs.add(new Dog(R.drawable.husky, "Husky"));
         dogs.add(new Dog(R.drawable.labradorretriever, "Labrador Retriever"));
+
     }
 
 
