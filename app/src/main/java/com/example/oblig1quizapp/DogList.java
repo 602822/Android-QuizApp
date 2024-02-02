@@ -20,5 +20,12 @@ public class DogList
         dogs.sort(Comparator.comparing(Dog::getImageText));
     }
 
+    public static void reverseSort() {
+        dogs.sort((dog1, dog2) -> {
+            // To sort in reverse order
+            return dog2.getImageText().compareTo(dog1.getImageText());
+        });
+    }
+
 
 }
