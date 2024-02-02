@@ -72,6 +72,11 @@ public class ImageTextAdapter extends BaseAdapter {
         return view;
     }
 
+    public void removeItem(int position) {
+        dogs.remove(position);
+        notifyDataSetChanged();
+    }
+
     private static class ViewHolder {
         ImageView imageView;
         TextView textView;
