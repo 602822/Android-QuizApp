@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class ImageTextAdapter extends BaseAdapter {
@@ -76,6 +77,8 @@ public class ImageTextAdapter extends BaseAdapter {
         dogs.remove(position);
         notifyDataSetChanged();
     }
+
+
 
     private static class ViewHolder {
         ImageView imageView;

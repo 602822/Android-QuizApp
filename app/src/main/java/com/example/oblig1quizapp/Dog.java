@@ -28,4 +28,10 @@ public class Dog {
     public String getImageText() {
         return imageText;
     }
+
+
+    @Override
+    public String toString() {
+        return imageText;
+    }
 }

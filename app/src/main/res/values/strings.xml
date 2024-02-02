@@ -3,4 +3,5 @@
     <string name="galleryButtonText">Gallery</string>
     <string name="quizButtonText">Quiz</string>
     <string name="addButtonText">Select an image</string>
+    <string name="sortButtonText">Sort</string>
 </resources>
