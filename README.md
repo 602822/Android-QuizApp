@@ -1,6 +1,7 @@
 ## Gallery
 - Browse through a collection of default dog breeds and their corresponding images.
 - Add new dog breeds by entering the breed name and uploading an image.
+- Sort the Dogs alphabetically
 
 ![Gallery](quizappgallery.png)
 
