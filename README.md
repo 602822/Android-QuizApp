@@ -1,5 +1,5 @@
-##Gallery
-![Gallery](quiz  app 1.png)
+## Gallery
+![Gallery](quiz%20app%201.png)
 
-##Quiz
-![Quiz](quiz app 2.png)
+## Quiz
+![Quiz](quiz%20app%202.png)
