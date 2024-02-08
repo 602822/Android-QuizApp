@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         Button quizButton = findViewById(R.id.quizButton);
 
         galleryButton.setOnClickListener(v -> {
-            Intent intent = new Intent(this,GalleryActivity.class);
+            Intent intent = new Intent(this, GalleryActivity.class);
             startActivity(intent);
 
         });
@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
 
 
 }

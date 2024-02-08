@@ -80,7 +80,6 @@ public class ImageTextAdapter extends BaseAdapter {
     }
 
 
-
     private static class ViewHolder {
         ImageView imageView;
         TextView textView;

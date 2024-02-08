@@ -32,22 +32,22 @@ public class GalleryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
 
-        pickImageLauncher =  registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+        pickImageLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
 
             @Override
             public void onActivityResult(ActivityResult result) {
-                if(result.getResultCode() == Activity.RESULT_OK) {
+                if (result.getResultCode() == Activity.RESULT_OK) {
                     Intent intent = result.getData();
 
-                    if(intent != null) {
+                    if (intent != null) {
 
                         Uri selectedImageUri = intent.getData();
-                        if(selectedImageUri != null) {
+                        if (selectedImageUri != null) {
                             int takeFlags = intent.getFlags() & (Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
                             getContentResolver().takePersistableUriPermission(selectedImageUri, takeFlags);
                             EditText editText = findViewById(R.id.textinput);
-                            String imageText =  editText.getText().toString();
-                            Dog dog = new Dog(selectedImageUri,imageText);
+                            String imageText = editText.getText().toString();
+                            Dog dog = new Dog(selectedImageUri, imageText);
                             DogList.dogs.add(dog);
                             Log.d("test", DogList.dogs.toString());
                         }
@@ -64,7 +64,7 @@ public class GalleryActivity extends AppCompatActivity {
         List<Dog> dogs = DogList.dogs;
 
 
-        ImageTextAdapter adapter = new ImageTextAdapter(this,dogs);
+        ImageTextAdapter adapter = new ImageTextAdapter(this, dogs);
         gridView.setAdapter(adapter);
 
         Button button = findViewById(R.id.addbutton);
@@ -74,7 +74,7 @@ public class GalleryActivity extends AppCompatActivity {
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
             intent.addCategory(Intent.CATEGORY_OPENABLE);
             intent.setType("image/*");
-          pickImageLauncher.launch(intent);
+            pickImageLauncher.launch(intent);
         });
 
         gridView.setOnItemClickListener((parent, view, position, id) -> {
@@ -87,7 +87,7 @@ public class GalleryActivity extends AppCompatActivity {
         //Switches between using sort and reverse sort
         final boolean[] sortAscending = {true};
         sortButton.setOnClickListener(v -> {
-            if(sortAscending[0]) {
+            if (sortAscending[0]) {
                 DogList.sortDogsByImageText();
             } else {
                 DogList.reverseSort();
@@ -95,7 +95,6 @@ public class GalleryActivity extends AppCompatActivity {
             adapter.notifyDataSetChanged();
             sortAscending[0] = !sortAscending[0];
         });
-
 
 
     }

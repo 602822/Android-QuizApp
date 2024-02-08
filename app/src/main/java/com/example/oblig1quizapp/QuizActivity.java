@@ -29,10 +29,10 @@ public class QuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
-         dog = pickRandomDog();
-         imageTexts = new ArrayList<>();
-         score = 0;
-         totalRounds = 1;
+        dog = pickRandomDog();
+        imageTexts = new ArrayList<>();
+        score = 0;
+        totalRounds = 1;
 
         Uri imageUri = dog.getImageUri();
         int imageResource = dog.getImageResource();
@@ -48,9 +48,9 @@ public class QuizActivity extends AppCompatActivity {
 
         ImageView image = findViewById(R.id.quizDogImage);
 
-        if(imageResource != 0) {
+        if (imageResource != 0) {
             image.setImageResource(imageResource);
-        } else if(imageUri != null) {
+        } else if (imageUri != null) {
             image.setImageURI(imageUri);
         } else {
             Log.d("test", "No image URI or imageResource");
@@ -87,7 +87,6 @@ public class QuizActivity extends AppCompatActivity {
         });
 
 
-
     }
 
 
@@ -105,21 +104,21 @@ public class QuizActivity extends AppCompatActivity {
 
     //Get two image texts that is not the image texts of the Dog on the screen
     public void fillImageTextsArray() {
-    List<Dog> dogs = DogList.dogs;
-    imageTexts.clear();
+        List<Dog> dogs = DogList.dogs;
+        imageTexts.clear();
 
 
-    Random random = new Random();
+        Random random = new Random();
 
-    while(imageTexts.size() != 2) {
-        int randomIndex = random.nextInt(dogs.size());
-        Dog randomDog = dogs.get(randomIndex);
+        while (imageTexts.size() != 2) {
+            int randomIndex = random.nextInt(dogs.size());
+            Dog randomDog = dogs.get(randomIndex);
 
-        if (randomDog != dog && !imageTexts.contains(randomDog.getImageText())) {
-            String imageText = randomDog.getImageText();
-            imageTexts.add(imageText);
+            if (randomDog != dog && !imageTexts.contains(randomDog.getImageText())) {
+                String imageText = randomDog.getImageText();
+                imageTexts.add(imageText);
+            }
         }
-    }
 
     }
 
@@ -146,12 +145,12 @@ public class QuizActivity extends AppCompatActivity {
     public void checkAnswer(Button button) {
         TextView answerView = findViewById(R.id.correctAnswerOrNot);
 
-        if(button.getText().equals(dog.getImageText())) {
-           answerView.setText("Correct Answer!");
-           TextView scoreView = findViewById(R.id.scoreText);
-           score++;
-           String scoreText = "Your score: " + score;
-           scoreView.setText(scoreText);
+        if (button.getText().equals(dog.getImageText())) {
+            answerView.setText("Correct Answer!");
+            TextView scoreView = findViewById(R.id.scoreText);
+            score++;
+            String scoreText = "Your score: " + score;
+            scoreView.setText(scoreText);
         } else {
             answerView.setText("The correct answer was: " + dog.getImageText());
         }
@@ -159,10 +158,10 @@ public class QuizActivity extends AppCompatActivity {
 
     public void playAgain() {
         Dog newDog;
-       //makes sure the new dog picked is not the same as the last dog picked
+        //makes sure the new dog picked is not the same as the last dog picked
         do {
             newDog = pickRandomDog();
-        } while(newDog.equals(dog));
+        } while (newDog.equals(dog));
 
         dog = newDog;
         ImageView dogimageView = findViewById(R.id.quizDogImage);
@@ -177,9 +176,9 @@ public class QuizActivity extends AppCompatActivity {
         rounds.setText(roundText);
 
         //Set the Dog image
-        if(imageResource != 0) {
+        if (imageResource != 0) {
             dogimageView.setImageResource(newDog.getImageResource());
-        } else if(newDog.getImageUri() != null) {
+        } else if (newDog.getImageUri() != null) {
             dogimageView.setImageURI(imageUri);
         } else {
             Log.d("test", "No image URI or imageResource");
