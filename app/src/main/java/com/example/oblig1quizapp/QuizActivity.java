@@ -22,6 +22,8 @@ public class QuizActivity extends AppCompatActivity {
 
     int score;
 
+    int totalRounds;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,10 +31,19 @@ public class QuizActivity extends AppCompatActivity {
 
          dog = pickRandomDog();
          imageTexts = new ArrayList<>();
-         int score = 0;
+         score = 0;
+         totalRounds = 1;
 
         Uri imageUri = dog.getImageUri();
         int imageResource = dog.getImageResource();
+
+        TextView scoreView = findViewById(R.id.scoreText);
+        String scoreText = "Your Score: " + score;
+        scoreView.setText(scoreText);
+
+        TextView rounds = findViewById(R.id.rounds);
+        String roundText = "Round: " + totalRounds;
+        rounds.setText(roundText);
 
 
         ImageView image = findViewById(R.id.quizDogImage);
@@ -55,6 +66,7 @@ public class QuizActivity extends AppCompatActivity {
 
         button.setOnClickListener(v ->
         {
+
             checkAnswer(button);
             playAgain();
 
@@ -135,11 +147,12 @@ public class QuizActivity extends AppCompatActivity {
 
         if(button.getText().equals(dog.getImageText())) {
            answerView.setText("Correct Answer!");
-           TextView scoreView = findViewById(R.id.score);
+           TextView scoreView = findViewById(R.id.scoreText);
            score++;
-           scoreView.setText(String.valueOf(score));
+           String scoreText = "Your score: " + score;
+           scoreView.setText(scoreText);
         } else {
-            answerView.setText("Wrong Answer");
+            answerView.setText("The correct answer was: " + dog.getImageText());
         }
     }
 
@@ -155,6 +168,15 @@ public class QuizActivity extends AppCompatActivity {
 
         int imageResource = newDog.getImageResource();
         Uri imageUri = newDog.getImageUri();
+
+        totalRounds++;
+        TextView scoreView = findViewById(R.id.scoreText);
+        String scoreText = "Your Score: " + score;
+        scoreView.setText(scoreText);
+
+        TextView rounds = findViewById(R.id.rounds);
+        String roundText = "Round: " + totalRounds;
+        rounds.setText(roundText);
 
         if(imageResource != 0) {
             dogimageView.setImageResource(newDog.getImageResource());
