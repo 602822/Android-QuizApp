@@ -120,7 +120,7 @@ public class QuizActivity extends AppCompatActivity {
 
         shuffeledTexts.add(dog.getImageText());
         shuffeledTexts.add(imageTexts.get(0));
-        shuffeledTexts.add(imageTexts.get(0));
+        shuffeledTexts.add(imageTexts.get(1));
 
         Collections.shuffle(shuffeledTexts);
 
