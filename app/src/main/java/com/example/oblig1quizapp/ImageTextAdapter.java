@@ -18,6 +18,7 @@ public class ImageTextAdapter extends BaseAdapter {
     private Context context;
     private List<Dog> dogs;
 
+    //Was not fill the GridView with Dog objects using a regular adapter
     public ImageTextAdapter(Context context, List<Dog> dogs) {
         this.context = context;
         this.dogs = dogs;

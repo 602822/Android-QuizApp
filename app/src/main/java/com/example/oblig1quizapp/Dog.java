@@ -7,11 +7,13 @@ public class Dog {
     private String imageText;
     private Uri imageUri;
 
+    //used for the images in the drawable folder
     public Dog(int imageResource, String imageText) {
         this.imageResource = imageResource;
         this.imageText = imageText;
     }
 
+    //used for the images from the user
     public Dog(Uri imageUri, String imageText) {
         this.imageUri = imageUri;
         this.imageText = imageText;

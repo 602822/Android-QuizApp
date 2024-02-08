@@ -5,8 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class DogList
-{
+public class DogList {
     public static List<Dog> dogs = new ArrayList<>();
 
     static {
@@ -16,15 +15,14 @@ public class DogList
 
     }
 
+    //Sort A-Z
     public static void sortDogsByImageText() {
         dogs.sort(Comparator.comparing(Dog::getImageText));
     }
 
+    //Sort Z-A
     public static void reverseSort() {
-        dogs.sort((dog1, dog2) -> {
-            // To sort in reverse order
-            return dog2.getImageText().compareTo(dog1.getImageText());
-        });
+        dogs.sort((dog1, dog2) -> dog2.getImageText().compareTo(dog1.getImageText()));
     }
 
 

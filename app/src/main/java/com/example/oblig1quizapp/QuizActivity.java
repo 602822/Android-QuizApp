@@ -57,7 +57,7 @@ public class QuizActivity extends AppCompatActivity {
         }
 
 
-        setImageTexts();
+        fillImageTextsArray();
         addTextToButtons();
 
         Button button = findViewById(R.id.button);
@@ -104,7 +104,7 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     //Get two image texts that is not the image texts of the Dog on the screen
-    public void setImageTexts() {
+    public void fillImageTextsArray() {
     List<Dog> dogs = DogList.dogs;
     imageTexts.clear();
 
@@ -141,7 +141,8 @@ public class QuizActivity extends AppCompatActivity {
         button3.setText(shuffeledTexts.get(2));
     }
 
-    //Sammenlign texten til bilde på skjermen med texten på knappen
+
+    //Compare the text of the dog on the screen to the text of the button clicked
     public void checkAnswer(Button button) {
         TextView answerView = findViewById(R.id.correctAnswerOrNot);
 
@@ -169,15 +170,13 @@ public class QuizActivity extends AppCompatActivity {
         int imageResource = newDog.getImageResource();
         Uri imageUri = newDog.getImageUri();
 
-        totalRounds++;
-        TextView scoreView = findViewById(R.id.scoreText);
-        String scoreText = "Your Score: " + score;
-        scoreView.setText(scoreText);
-
+        //Update Round
         TextView rounds = findViewById(R.id.rounds);
+        totalRounds++;
         String roundText = "Round: " + totalRounds;
         rounds.setText(roundText);
 
+        //Set the Dog image
         if(imageResource != 0) {
             dogimageView.setImageResource(newDog.getImageResource());
         } else if(newDog.getImageUri() != null) {
@@ -186,7 +185,7 @@ public class QuizActivity extends AppCompatActivity {
             Log.d("test", "No image URI or imageResource");
         }
 
-        setImageTexts();
+        fillImageTextsArray();
         addTextToButtons();
 
     }

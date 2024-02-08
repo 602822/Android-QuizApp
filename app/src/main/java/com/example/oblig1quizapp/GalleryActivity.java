@@ -71,7 +71,6 @@ public class GalleryActivity extends AppCompatActivity {
 
         button.setOnClickListener(v -> {
 
-         // Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
             intent.addCategory(Intent.CATEGORY_OPENABLE);
             intent.setType("image/*");
@@ -79,15 +78,14 @@ public class GalleryActivity extends AppCompatActivity {
         });
 
         gridView.setOnItemClickListener((parent, view, position, id) -> {
-            // Remove the item from the adapter
             adapter.removeItem(position);
-            Log.d("test", DogList.dogs.toString());
         });
 
 
         Button sortButton = findViewById(R.id.sortbutton);
-        final boolean[] sortAscending = {true};
 
+        //Switches between using sort and reverse sort
+        final boolean[] sortAscending = {true};
         sortButton.setOnClickListener(v -> {
             if(sortAscending[0]) {
                 DogList.sortDogsByImageText();
