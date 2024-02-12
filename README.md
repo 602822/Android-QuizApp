@@ -3,6 +3,7 @@
 - Add new dog breeds by entering the breed name and uploading an image.
 - Sort the Dogs alphabetically
 - Delete a dog by clicking on the image
+  
 ![Gallery](quizappgallery.png)
 
 ## Quiz
