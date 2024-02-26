@@ -15,7 +15,23 @@
               </deviceKey>
             </Target>
           </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-01-29T11:38:27.236933900Z" />
+          <timeTargetWasSelectedWithDropDown value="2024-02-26T12:02:21.156514400Z" />
+        </State>
+      </entry>
+      <entry key="testGalleryButton()">
+        <State>
+          <targetSelectedWithDropDown>
+            <Target>
+              <type value="QUICK_BOOT_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="C:\Users\vefje\.android\avd\Pixel_6_API_34.avd" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </targetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-02-26T11:55:20.007945700Z" />
         </State>
       </entry>
     </value>
