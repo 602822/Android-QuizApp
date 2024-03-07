@@ -57,6 +57,7 @@ public class QuizActivity extends AppCompatActivity {
         }
 
 
+
         fillImageTextsArray();
         addTextToButtons();
 
