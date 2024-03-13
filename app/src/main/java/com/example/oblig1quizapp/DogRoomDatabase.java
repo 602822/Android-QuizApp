@@ -56,8 +56,8 @@ public abstract class DogRoomDatabase extends RoomDatabase {
             });
         }
     };
-
-
+*/
+/*
     static Migration migration1to2 = new Migration(1, 2) {
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {

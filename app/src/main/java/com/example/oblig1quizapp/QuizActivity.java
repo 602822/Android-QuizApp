@@ -1,6 +1,7 @@
 package com.example.oblig1quizapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,33 +10,68 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.w3c.dom.Entity;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 public class QuizActivity extends AppCompatActivity {
 
 
-    Dog dog;
+    DogEntity dog;
     List<String> imageTexts;
 
     int score;
 
     int totalRounds;
 
+    DogViewModel mDogViewModel;
+
+    List<DogEntity> dogs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
-        dog = pickRandomDog();
+
+
+        mDogViewModel = new ViewModelProvider(this).get(DogViewModel.class);
+
+
+
+        mDogViewModel.getAllDogsAsc().observe(this, dogs -> {
+            if(dogs != null) {
+                this.dogs = new ArrayList<>(dogs);
+                dog = pickRandomDog();
+                Uri imageUri = Converters.fromString(dog.getImageUri());
+                int imageResource = dog.getImageResource();
+                ImageView image = findViewById(R.id.quizDogImage);
+
+                if (imageResource != 0) {
+                    image.setImageResource(imageResource);
+                } else if (imageUri != null) {
+                    image.setImageURI(imageUri);
+                } else {
+                    Log.d("test", "No image URI or imageResource");
+                }
+
+
+                fillImageTextsArray();
+                addTextToButtons();
+
+            }
+        });
+
+
         imageTexts = new ArrayList<>();
         score = 0;
         totalRounds = 1;
 
-        Uri imageUri = dog.getImageUri();
-        int imageResource = dog.getImageResource();
+
 
         TextView scoreView = findViewById(R.id.scoreText);
         String scoreText = "Your Score: " + score;
@@ -46,20 +82,6 @@ public class QuizActivity extends AppCompatActivity {
         rounds.setText(roundText);
 
 
-        ImageView image = findViewById(R.id.quizDogImage);
-
-        if (imageResource != 0) {
-            image.setImageResource(imageResource);
-        } else if (imageUri != null) {
-            image.setImageURI(imageUri);
-        } else {
-            Log.d("test", "No image URI or imageResource");
-        }
-
-
-
-        fillImageTextsArray();
-        addTextToButtons();
 
         Button button = findViewById(R.id.button);
         Button button2 = findViewById(R.id.button2);
@@ -91,8 +113,8 @@ public class QuizActivity extends AppCompatActivity {
     }
 
 
-    public Dog pickRandomDog() {
-        List<Dog> dogs = DogList.dogs;
+    public DogEntity pickRandomDog() {
+       // List<Dog> dogs = DogList.dogs;
         if (dogs == null || dogs.isEmpty()) {
             return null;
         }
@@ -105,7 +127,7 @@ public class QuizActivity extends AppCompatActivity {
 
     //Get two image texts that is not the image texts of the Dog on the screen
     public void fillImageTextsArray() {
-        List<Dog> dogs = DogList.dogs;
+       // List<Dog> dogs = DogList.dogs;
         imageTexts.clear();
 
 
@@ -113,7 +135,7 @@ public class QuizActivity extends AppCompatActivity {
 
         while (imageTexts.size() != 2) {
             int randomIndex = random.nextInt(dogs.size());
-            Dog randomDog = dogs.get(randomIndex);
+            DogEntity randomDog = dogs.get(randomIndex);
 
             if (randomDog != dog && !imageTexts.contains(randomDog.getImageText())) {
                 String imageText = randomDog.getImageText();
@@ -158,7 +180,7 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     public void playAgain() {
-        Dog newDog;
+        DogEntity newDog;
         //makes sure the new dog picked is not the same as the last dog picked
         do {
             newDog = pickRandomDog();
@@ -168,7 +190,7 @@ public class QuizActivity extends AppCompatActivity {
         ImageView dogimageView = findViewById(R.id.quizDogImage);
 
         int imageResource = newDog.getImageResource();
-        Uri imageUri = newDog.getImageUri();
+        Uri imageUri = Converters.fromString(newDog.getImageUri());
 
         //Update Round
         TextView rounds = findViewById(R.id.rounds);
