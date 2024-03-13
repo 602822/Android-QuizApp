@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:gravity="center"
+        android:id="@+id/mainLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <ImageView
+            android:layout_marginRight="20dp"
+            android:id="@+id/quizDogImage"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:contentDescription="@string/imageDescription" />
+
+        <LinearLayout
+            android:gravity="center"
+            android:id="@+id/dataLinearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/mainLinearLayout"
+            app:layout_constraintEnd_toEndOf="@id/mainLinearLayout"
+            app:layout_constraintStart_toStartOf="@id/mainLinearLayout"
+            app:layout_constraintTop_toTopOf="@id/mainLinearLayout"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:id="@+id/scoreLinearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+               android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@id/buttonLinearLayout"
+                app:layout_constraintEnd_toEndOf="@id/dataLinearLayout"
+                app:layout_constraintStart_toStartOf="@id/dataLinearLayout"
+                app:layout_constraintTop_toTopOf="@id/dataLinearLayout"
+                >
+
+                <TextView
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:id="@+id/scoreText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Your Score: "
+
+                    />
+
+
+                <TextView
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:id="@+id/rounds"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+
+                    />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_margin="20dp"
+                android:id="@+id/correctAnswerOrNot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                />
+
+            <LinearLayout
+                android:id="@+id/buttonLinearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="@id/dataLinearLayout"
+                app:layout_constraintEnd_toEndOf="@id/dataLinearLayout"
+                app:layout_constraintStart_toStartOf="@id/dataLinearLayout"
+                app:layout_constraintTop_toBottomOf="@id/scoreLinearLayout"
+
+
+                >
+
+                <Button
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    android:id="@+id/button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Button 1"
+                    />
+
+                <Button
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    android:id="@+id/button2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Button 2"
+                    />
+
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:text="Button 3" />
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

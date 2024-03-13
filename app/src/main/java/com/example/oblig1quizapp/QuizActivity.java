@@ -3,6 +3,7 @@ package com.example.oblig1quizapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,14 +33,33 @@ public class QuizActivity extends AppCompatActivity {
 
     List<DogEntity> dogs;
 
+
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quiz);
+
+
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            setContentView(R.layout.quiz_landscape);
+        } else {
+            setContentView(R.layout.activity_quiz);
+        }
+
+
+        imageTexts = new ArrayList<>();
+        score = 0;
+        totalRounds = 1;
+
 
 
 
         mDogViewModel = new ViewModelProvider(this).get(DogViewModel.class);
+
+
 
 
 
@@ -50,6 +70,8 @@ public class QuizActivity extends AppCompatActivity {
                 Uri imageUri = Converters.fromString(dog.getImageUri());
                 int imageResource = dog.getImageResource();
                 ImageView image = findViewById(R.id.quizDogImage);
+
+
 
                 if (imageResource != 0) {
                     image.setImageResource(imageResource);
@@ -66,10 +88,6 @@ public class QuizActivity extends AppCompatActivity {
             }
         });
 
-
-        imageTexts = new ArrayList<>();
-        score = 0;
-        totalRounds = 1;
 
 
 
