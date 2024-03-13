@@ -33,4 +33,23 @@ public class DogRepository {
             mDogDao.insert(dog);
 });
     }
+
+    void deleteDogWithId(long id) {
+        DogRoomDatabase.databaseWriteExecutor.execute(() -> {
+            mDogDao.deleteDogWithId(id);
+        });
+    }
+
+    LiveData<List<DogEntity>> getAllDogsDesc() {
+        return mDogDao.getAllDogsDesc();
+    }
+
+    LiveData<List<DogEntity>> getAllDogsAsc() {
+        return mDogDao.getAllDogsAsc();
+    }
+
+
+
+
+
 }

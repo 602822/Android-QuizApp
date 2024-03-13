@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+
+//NOT USED ANYMORE
 public class DogList {
     public static List<Dog> dogs = new ArrayList<>();
 

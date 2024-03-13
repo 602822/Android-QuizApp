@@ -10,12 +10,21 @@ import java.util.List;
 @Dao
 public interface DogDAO {
    @Insert
-    void insert(DogEntity dog); //Change later to dog
+    void insert(DogEntity dog);
 
    @Query("DELETE FROM dog_table")
     void deleteAll();
 
+   @Query("DELETE FROM dog_table WHERE  id = :id")
+   void deleteDogWithId(long id);
+
+    @Query("SELECT * FROM dog_table")
+      LiveData<List<DogEntity>> getAllDogs();
+
+    @Query("SELECT * FROM dog_table ORDER BY imageText DESC")
+    LiveData<List<DogEntity>> getAllDogsDesc();
+
     @Query("SELECT * FROM dog_table ORDER BY imageText ASC")
-      LiveData<List<DogEntity>> getAllDogs(); //Change later to dog
+    LiveData<List<DogEntity>> getAllDogsAsc();
 
 }

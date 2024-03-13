@@ -2,6 +2,8 @@ package com.example.oblig1quizapp;
 
 import android.net.Uri;
 
+
+//NOT USED ANYMORE
 public class Dog {
     private int imageResource;
     private String imageText;

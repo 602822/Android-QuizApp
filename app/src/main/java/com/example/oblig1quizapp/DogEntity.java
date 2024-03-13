@@ -1,8 +1,7 @@
 package com.example.oblig1quizapp;
 
-import android.net.Uri;
-
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -16,18 +15,27 @@ public class DogEntity {
     private int imageResource;
     @NonNull
     private String imageText;
-    private Uri imageUri;
 
+    @Nullable
+    private String imageUri;
 
-    public DogEntity(int id, int imageResource, @NonNull String imageText, Uri imageUri) {
-        this.id = id;
-        this.imageResource = imageResource;
+    //private Uri imageUri;
+// error: Cannot figure out how to save this field into database. You can consider adding a type converter for it.
+//    private Uri imageUri;
+
+    public DogEntity(@NonNull String imageText, int imageResource,  @Nullable String imageUri) {
         this.imageText = imageText;
+        this.imageResource = imageResource;
         this.imageUri = imageUri;
+
     }
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getImageResource() {
@@ -47,11 +55,22 @@ public class DogEntity {
         this.imageText = imageText;
     }
 
-    public Uri getImageUri() {
+    @Nullable
+    public String getImageUri() {
         return imageUri;
     }
 
-    public void setImageUri(Uri imageUri) {
+    public void setImageUri(@Nullable String imageUri) {
         this.imageUri = imageUri;
+    }
+
+    @Override
+    public String toString() {
+        return "DogEntity{" +
+                "id=" + id +
+                ", imageResource=" + imageResource +
+                ", imageText='" + imageText + '\'' +
+                ", imageUri='" + imageUri + '\'' +
+                '}';
     }
 }

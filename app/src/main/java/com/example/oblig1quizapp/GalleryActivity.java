@@ -5,7 +5,11 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -27,10 +31,22 @@ public class GalleryActivity extends AppCompatActivity {
 
     private ActivityResultLauncher<Intent> pickImageLauncher;
 
+    private DogViewModel mDogViewModel;
+
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
+
+
+
+
+
+
 
         pickImageLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
 
@@ -47,8 +63,15 @@ public class GalleryActivity extends AppCompatActivity {
                             getContentResolver().takePersistableUriPermission(selectedImageUri, takeFlags);
                             EditText editText = findViewById(R.id.textinput);
                             String imageText = editText.getText().toString();
-                            Dog dog = new Dog(selectedImageUri, imageText);
-                            DogList.dogs.add(dog);
+
+                            String imageUri = Converters.uriToString(selectedImageUri);
+                            DogEntity dog = new DogEntity(imageText,0, imageUri);
+                            mDogViewModel.insert(dog);
+
+                         //  Dog dog = new Dog(selectedImageUri, imageText);
+                          // DogList.dogs.add(dog);
+                          //  DogEntity dog = new DogEntity(imageText, selectedImageUri);
+                          //  mDogViewModel.insert(dog);
                             Log.d("test", DogList.dogs.toString());
                         }
 
@@ -59,13 +82,42 @@ public class GalleryActivity extends AppCompatActivity {
         });
 
 
+
+
         GridView gridView = findViewById(R.id.gridview);
+         mDogViewModel = new ViewModelProvider(this).get(DogViewModel.class);
 
-        List<Dog> dogs = DogList.dogs;
+     //   LiveData<List<DogEntity>> dogs = mDogViewModel.getAllDogs();
+        ImageTextAdapter adapter = new ImageTextAdapter(this);
+         gridView.setAdapter(adapter);
+        // List<Dog> dogs = DogList.dogs;
 
 
-        ImageTextAdapter adapter = new ImageTextAdapter(this, dogs);
-        gridView.setAdapter(adapter);
+
+/*
+        mDogViewModel.getAllDogs().observe(this, dogsInRoom -> {
+            adapter.submitList(dogsInRoom);
+        });
+
+
+ */
+
+/*
+        mDogViewModel.getAllDogs().observe(this, dogsInRoom -> {
+            adapter.(dogsInRoom);
+        });
+
+ */
+
+        mDogViewModel.getAllDogs().observe(this,
+                new Observer<List<DogEntity>>() {
+                    @Override
+                    public void onChanged(@Nullable final List<DogEntity> dogs) {
+                        Log.d("fixBug", "Number of dogs: " + dogs.size());
+                        adapter.setList(dogs);
+                    }
+                });
+
 
         Button button = findViewById(R.id.addbutton);
 
@@ -78,7 +130,11 @@ public class GalleryActivity extends AppCompatActivity {
         });
 
         gridView.setOnItemClickListener((parent, view, position, id) -> {
-            adapter.removeItem(position);
+           // adapter.removeItem(position);
+
+          DogEntity dog = (DogEntity) adapter.getItem(position);
+           int dogId = dog.getId();
+           mDogViewModel.deleteDogWithId(dogId);
         });
 
 
@@ -88,9 +144,13 @@ public class GalleryActivity extends AppCompatActivity {
         final boolean[] sortAscending = {true};
         sortButton.setOnClickListener(v -> {
             if (sortAscending[0]) {
-                DogList.sortDogsByImageText();
+              mDogViewModel.getAllDogsAsc().observe(this, dogs -> {
+                    adapter.setList(dogs);
+              });
             } else {
-                DogList.reverseSort();
+             mDogViewModel.getAllDogsDesc().observe(this, dogs -> {
+                    adapter.setList(dogs);
+                });
             }
             adapter.notifyDataSetChanged();
             sortAscending[0] = !sortAscending[0];
