@@ -19,21 +19,7 @@ import java.util.Random;
 
 public class QuizActivity extends AppCompatActivity {
 
-
-    DogEntity dog;
-    List<String> imageTexts;
-
-   // int score;
-
- //   int totalRounds;
-
     QuizViewModel quizViewModel;
-
-    List<DogEntity> dogs;
-
-
-
-
 
 
     @Override
@@ -42,7 +28,7 @@ public class QuizActivity extends AppCompatActivity {
 
 
         //Set layout based on orientation
-        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             setContentView(R.layout.quiz_landscape);
         } else {
             setContentView(R.layout.activity_quiz);
@@ -71,7 +57,6 @@ public class QuizActivity extends AppCompatActivity {
         });
 
 
-
         ImageView dogImageView = findViewById(R.id.quizDogImage);
         Button button = findViewById(R.id.button);
         Button button2 = findViewById(R.id.button2);
@@ -84,214 +69,14 @@ public class QuizActivity extends AppCompatActivity {
         });
 
 
-
-
         //The buttons will now call the checkAnswer and playAgain methods when clicked
         setButtonClickListeners();
 
 
-
-
-
-
-        /*
-
-        score = 0;
-        totalRounds = 1;
-*/
-
-       // imageTexts = new ArrayList<>();
-
-
-
-
-
-
-
-        /*
-
-        quizViewModel.getAllDogsAsc().observe(this, dogs -> {
-            if(dogs != null) {
-                this.dogs = new ArrayList<>(dogs);
-                dog = pickRandomDog();
-                Uri imageUri = Converters.fromString(dog.getImageUri());
-                int imageResource = dog.getImageResource();
-                ImageView image = findViewById(R.id.quizDogImage);
-
-
-
-                if (imageResource != 0) {
-                    image.setImageResource(imageResource);
-                } else if (imageUri != null) {
-                    image.setImageURI(imageUri);
-                } else {
-                    Log.d("test", "No image URI or imageResource");
-                }
-
-
-                fillImageTextsArray();
-                addTextToButtons();
-
-            }
-        });
-*/
-
-       // int score = mDogViewModel.getScore().getValue();
-
-
-        /*
-        String scoreText = "Your Score: " + score;
-        scoreView.setText(scoreText);
-*/
-
-
-
-
-     //   int roundsPlayed = mDogViewModel.getRoundsplayed().getValue();
-     //   TextView rounds = findViewById(R.id.rounds);
-     //   String roundText = "Round: " + roundsPlayed;
-       // rounds.setText(roundText);
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
-
-    /*
-    public DogEntity pickRandomDog() {
-       // List<Dog> dogs = DogList.dogs;
-        if (dogs == null || dogs.isEmpty()) {
-            return null;
-        }
-
-        Random random = new Random();
-        int randomIndex = random.nextInt(dogs.size());
-
-        return dogs.get(randomIndex);
-    }
-
-*/
-
-    /*
-    //Get two image texts that is not the image texts of the Dog on the screen
-    public void fillImageTextsArray() {
-       // List<Dog> dogs = DogList.dogs;
-        imageTexts.clear();
-
-
-        Random random = new Random();
-
-
-        while (imageTexts.size() != 2) {
-            int randomIndex = random.nextInt(dogs.size());
-            DogEntity randomDog = dogs.get(randomIndex);
-
-            if (randomDog != dog && !imageTexts.contains(randomDog.getImageText())) {
-                String imageText = randomDog.getImageText();
-                imageTexts.add(imageText);
-            }
-        }
-
-    }
-*/
-
-    /*
-    public void addTextToButtons() {
-        Button button1 = findViewById(R.id.button);
-        Button button2 = findViewById(R.id.button2);
-        Button button3 = findViewById(R.id.button3);
-
-        List<String> shuffeledTexts = new ArrayList<>();
-
-        shuffeledTexts.add(dog.getImageText());
-        shuffeledTexts.add(imageTexts.get(0));
-        shuffeledTexts.add(imageTexts.get(1));
-
-        Collections.shuffle(shuffeledTexts);
-
-        button1.setText(shuffeledTexts.get(0));
-        button2.setText(shuffeledTexts.get(1));
-        button3.setText(shuffeledTexts.get(2));
-    }
-*/
-
-    /*
-
-    //Compare the text of the dog on the screen to the text of the button clicked
-    public void checkAnswer(Button button) {
-        TextView answerView = findViewById(R.id.correctAnswerOrNot);
-
-        if (button.getText().equals(dog.getImageText())) {
-            answerView.setText("Correct Answer!");
-           // TextView scoreView = findViewById(R.id.scoreText);
-            int currentScore =  quizViewModel.getScore().getValue();
-            quizViewModel.setScore(new MutableLiveData<>(currentScore + 1));
-            Log.d("quizDebug", "Score: " + currentScore);
-          //  String scoreText = "Your score: " + score;
-          //  scoreView.setText(scoreText);
-        } else {
-            answerView.setText("The correct answer was: " + dog.getImageText());
-        }
-    }
-*/
-
-    /*
-    public void playAgain() {
-        DogEntity newDog;
-        //makes sure the new dog picked is not the same as the last dog picked
-        do {
-            newDog = pickRandomDog();
-        } while (newDog.equals(dog));
-
-        dog = newDog;
-        ImageView dogimageView = findViewById(R.id.quizDogImage);
-
-        int imageResource = newDog.getImageResource();
-        Uri imageUri = Converters.fromString(newDog.getImageUri());
-
-        //Update Round
-        /*
-        TextView rounds = findViewById(R.id.rounds);
-        totalRounds++;
-        String roundText = "Round: " + totalRounds;
-        rounds.setText(roundText);
-
-
-        //update Rounds played
-        int roundsPlayed = quizViewModel.getRoundsplayed().getValue();
-        quizViewModel.setRoundsplayed(new MutableLiveData<>(roundsPlayed + 1));
-        Log.d("quizDebug", "Rounds played: " + roundsPlayed);
-*/
-
-/*
-        //Set the Dog image
-        if (imageResource != 0) {
-            dogimageView.setImageResource(newDog.getImageResource());
-        } else if (newDog.getImageUri() != null) {
-            dogimageView.setImageURI(imageUri);
-        } else {
-            Log.d("test", "No image URI or imageResource");
-        }
-
-        //Update the buttons
-        fillImageTextsArray();
-        addTextToButtons();
-
-    }
-*/
 
     public void setButtonClickListeners() {
-
 
 
         Button button = findViewById(R.id.button);
@@ -305,8 +90,8 @@ public class QuizActivity extends AppCompatActivity {
         button.setOnClickListener(v ->
         {
 
-          quizViewModel.checkAnswer(button, answerView);
-           quizViewModel.playAgain(dogImageView, button, button2, button3);
+            quizViewModel.checkAnswer(button, answerView);
+            quizViewModel.playAgain(dogImageView, button, button2, button3);
 
         });
 

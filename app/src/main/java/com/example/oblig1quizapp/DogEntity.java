@@ -19,11 +19,8 @@ public class DogEntity {
     @Nullable
     private String imageUri;
 
-    //private Uri imageUri;
-// error: Cannot figure out how to save this field into database. You can consider adding a type converter for it.
-//    private Uri imageUri;
 
-    public DogEntity(@NonNull String imageText, int imageResource,  @Nullable String imageUri) {
+    public DogEntity(@NonNull String imageText, int imageResource, @Nullable String imageUri) {
         this.imageText = imageText;
         this.imageResource = imageResource;
         this.imageUri = imageUri;
@@ -42,27 +39,18 @@ public class DogEntity {
         return imageResource;
     }
 
-    public void setImageResource(int imageResource) {
-        this.imageResource = imageResource;
-    }
 
     @NonNull
     public String getImageText() {
         return imageText;
     }
 
-    public void setImageText(@NonNull String imageText) {
-        this.imageText = imageText;
-    }
 
     @Nullable
     public String getImageUri() {
         return imageUri;
     }
 
-    public void setImageUri(@Nullable String imageUri) {
-        this.imageUri = imageUri;
-    }
 
     @Override
     public String toString() {

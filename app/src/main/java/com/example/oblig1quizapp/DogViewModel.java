@@ -16,15 +16,19 @@ public class DogViewModel extends AndroidViewModel {
     private final LiveData<List<DogEntity>> mAllDogs;
 
 
-    public DogViewModel (Application application) {
+    public DogViewModel(Application application) {
         super(application);
         mRepository = new DogRepository(application);
         mAllDogs = mRepository.getAllDogs();
     }
 
-    LiveData<List<DogEntity>> getAllDogs() { return mAllDogs; }
+    LiveData<List<DogEntity>> getAllDogs() {
+        return mAllDogs;
+    }
 
-    public void insert(DogEntity dog) { mRepository.insert(dog); }
+    public void insert(DogEntity dog) {
+        mRepository.insert(dog);
+    }
 
     public void deleteDogWithId(long id) {
         mRepository.deleteDogWithId(id);
@@ -37,8 +41,6 @@ public class DogViewModel extends AndroidViewModel {
     public LiveData<List<DogEntity>> getAllDogsAsc() {
         return mRepository.getAllDogsAsc();
     }
-
-
 
 
 }

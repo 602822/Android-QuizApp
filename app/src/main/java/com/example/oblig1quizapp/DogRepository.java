@@ -31,7 +31,7 @@ public class DogRepository {
     void insert(DogEntity dog) {
         DogRoomDatabase.databaseWriteExecutor.execute(() -> {
             mDogDao.insert(dog);
-});
+        });
     }
 
     void deleteDogWithId(long id) {
@@ -47,9 +47,6 @@ public class DogRepository {
     LiveData<List<DogEntity>> getAllDogsAsc() {
         return mDogDao.getAllDogsAsc();
     }
-
-
-
 
 
 }

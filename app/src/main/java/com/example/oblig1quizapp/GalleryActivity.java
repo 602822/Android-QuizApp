@@ -34,18 +34,10 @@ public class GalleryActivity extends AppCompatActivity {
     private DogViewModel mDogViewModel;
 
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
-
-
-
-
-
 
 
         pickImageLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
@@ -65,14 +57,14 @@ public class GalleryActivity extends AppCompatActivity {
                             String imageText = editText.getText().toString();
 
                             String imageUri = Converters.uriToString(selectedImageUri);
-                            DogEntity dog = new DogEntity(imageText,0, imageUri);
+                            DogEntity dog = new DogEntity(imageText, 0, imageUri);
                             mDogViewModel.insert(dog);
 
-                         //  Dog dog = new Dog(selectedImageUri, imageText);
-                          // DogList.dogs.add(dog);
-                          //  DogEntity dog = new DogEntity(imageText, selectedImageUri);
-                          //  mDogViewModel.insert(dog);
-                            Log.d("test", DogList.dogs.toString());
+                            //  Dog dog = new Dog(selectedImageUri, imageText);
+                            // DogList.dogs.add(dog);
+                            //  DogEntity dog = new DogEntity(imageText, selectedImageUri);
+                            //  mDogViewModel.insert(dog);
+                          //  Log.d("test", DogList.dogs.toString());
                         }
 
 
@@ -82,32 +74,13 @@ public class GalleryActivity extends AppCompatActivity {
         });
 
 
-
-
         GridView gridView = findViewById(R.id.gridview);
-         mDogViewModel = new ViewModelProvider(this).get(DogViewModel.class);
+        mDogViewModel = new ViewModelProvider(this).get(DogViewModel.class);
 
-     //   LiveData<List<DogEntity>> dogs = mDogViewModel.getAllDogs();
+
         ImageTextAdapter adapter = new ImageTextAdapter(this);
-         gridView.setAdapter(adapter);
-        // List<Dog> dogs = DogList.dogs;
+        gridView.setAdapter(adapter);
 
-
-
-/*
-        mDogViewModel.getAllDogs().observe(this, dogsInRoom -> {
-            adapter.submitList(dogsInRoom);
-        });
-
-
- */
-
-/*
-        mDogViewModel.getAllDogs().observe(this, dogsInRoom -> {
-            adapter.(dogsInRoom);
-        });
-
- */
 
         mDogViewModel.getAllDogs().observe(this,
                 new Observer<List<DogEntity>>() {
@@ -130,11 +103,11 @@ public class GalleryActivity extends AppCompatActivity {
         });
 
         gridView.setOnItemClickListener((parent, view, position, id) -> {
-           // adapter.removeItem(position);
 
-          DogEntity dog = (DogEntity) adapter.getItem(position);
-           int dogId = dog.getId();
-           mDogViewModel.deleteDogWithId(dogId);
+
+            DogEntity dog = (DogEntity) adapter.getItem(position);
+            int dogId = dog.getId();
+            mDogViewModel.deleteDogWithId(dogId);
         });
 
 
@@ -144,11 +117,11 @@ public class GalleryActivity extends AppCompatActivity {
         final boolean[] sortAscending = {true};
         sortButton.setOnClickListener(v -> {
             if (sortAscending[0]) {
-              mDogViewModel.getAllDogsAsc().observe(this, dogs -> {
+                mDogViewModel.getAllDogsAsc().observe(this, dogs -> {
                     adapter.setList(dogs);
-              });
+                });
             } else {
-             mDogViewModel.getAllDogsDesc().observe(this, dogs -> {
+                mDogViewModel.getAllDogsDesc().observe(this, dogs -> {
                     adapter.setList(dogs);
                 });
             }

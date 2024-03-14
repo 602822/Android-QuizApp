@@ -18,13 +18,9 @@ import java.util.Objects;
 public class ImageTextAdapter extends BaseAdapter {
 
     private Context context;
-    //private List<Dog> dogs;
+
 
     private List<DogEntity> dogs;
-
-    private DogRepository repository;
-
-
 
 
     //Was not fill the GridView with Dog objects using a regular adapter
@@ -84,8 +80,8 @@ public class ImageTextAdapter extends BaseAdapter {
             Glide.with(context).load(data.getImageResource()).into(viewHolder.imageView);
         } else {
 
-            if(!Objects.equals(data.getImageUri(), "")) {
-                 imageUri = Converters.fromString(data.getImageUri());
+            if (!Objects.equals(data.getImageUri(), "")) {
+                imageUri = Converters.fromString(data.getImageUri());
             }
             if (imageUri != null) {
                 // Use Glide to load the image from Uri into an ImageView
