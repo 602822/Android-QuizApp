@@ -4,13 +4,17 @@ import android.app.Application;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class DogViewModel extends AndroidViewModel {
     private DogRepository mRepository;
 
     private final LiveData<List<DogEntity>> mAllDogs;
+
 
     public DogViewModel (Application application) {
         super(application);
@@ -33,4 +37,8 @@ public class DogViewModel extends AndroidViewModel {
     public LiveData<List<DogEntity>> getAllDogsAsc() {
         return mRepository.getAllDogsAsc();
     }
+
+
+
+
 }
