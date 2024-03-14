@@ -60,11 +60,6 @@ public class GalleryActivity extends AppCompatActivity {
                             DogEntity dog = new DogEntity(imageText, 0, imageUri);
                             mDogViewModel.insert(dog);
 
-                            //  Dog dog = new Dog(selectedImageUri, imageText);
-                            // DogList.dogs.add(dog);
-                            //  DogEntity dog = new DogEntity(imageText, selectedImageUri);
-                            //  mDogViewModel.insert(dog);
-                          //  Log.d("test", DogList.dogs.toString());
                         }
 
 
