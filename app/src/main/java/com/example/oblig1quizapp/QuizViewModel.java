@@ -1,6 +1,7 @@
 package com.example.oblig1quizapp;
 
 import android.app.Application;
+import android.content.Context;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.Button;
@@ -11,6 +12,8 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -182,7 +185,7 @@ public class QuizViewModel extends AndroidViewModel {
         }
     }
 
-    public void playAgain(ImageView dogImageView, Button button1, Button button2, Button button3, List<DogEntity> dogs) {
+    public void playAgain(ImageView dogImageView, Button button1, Button button2, Button button3, List<DogEntity> dogs, Context context) {
 
 
         pickRandomDog(dogs);
@@ -204,7 +207,8 @@ public class QuizViewModel extends AndroidViewModel {
         if (imageResource != 0) {
             dogImageView.setImageResource(dog.getImageResource());
         } else if (dog.getImageUri() != null) {
-            dogImageView.setImageURI(imageUri);
+          //  dogImageView.setImageURI(imageUri);  // seImageUri reads from disk and will bottleneck the app
+            Glide.with(context).load(imageUri).into(dogImageView); // use glide to load image from uri async
         } else {
             Log.d("test", "No image URI or imageResource");
         }
@@ -215,28 +219,28 @@ public class QuizViewModel extends AndroidViewModel {
 
     }
 
-    public void setButtonClickListeners(List<DogEntity> dogs, Button button, Button button2, Button button3, TextView answerView, ImageView dogImageView) {
+    public void setButtonClickListeners(List<DogEntity> dogs, Button button, Button button2, Button button3, TextView answerView, ImageView dogImageView, Context context) {
 
 
         button.setOnClickListener(v ->
         {
 
             checkAnswer(button, answerView);
-            playAgain(dogImageView, button, button2, button3, dogs);
+            playAgain(dogImageView, button, button2, button3, dogs, context); ////!!!!!!!
 
         });
 
         button2.setOnClickListener(v ->
         {
             checkAnswer(button2, answerView);
-            playAgain(dogImageView, button, button2, button3, dogs);
+            playAgain(dogImageView, button, button2, button3, dogs, context);
 
         });
 
         button3.setOnClickListener(v ->
         {
             checkAnswer(button3, answerView);
-            playAgain(dogImageView, button, button2, button3, dogs);
+            playAgain(dogImageView, button, button2, button3, dogs, context);
 
         });
     }

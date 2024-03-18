@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -19,6 +20,18 @@ public class QuizActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+                .detectDiskReads()
+                .detectDiskWrites()
+                .detectNetwork()   // or .detectAll() for all detectable problems
+                .penaltyLog()
+                .build());
+        StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+                .detectLeakedSqlLiteObjects()
+                .detectLeakedClosableObjects()
+                .penaltyLog()
+                .penaltyDeath()
+                .build());
         super.onCreate(savedInstanceState);
 
 
@@ -66,7 +79,7 @@ public class QuizActivity extends AppCompatActivity {
             //   quizViewModel.fillButtonOptionsList(dogs);
             quizViewModel.play(dogImageView, button, button2, button3);
             //The buttons will now call the checkAnswer and playAgain methods when clicked
-            quizViewModel.setButtonClickListeners(dogs, button, button2, button3, answerView, dogImageView);
+            quizViewModel.setButtonClickListeners(dogs, button, button2, button3, answerView, dogImageView, this);
         });
 
 

@@ -23,6 +23,7 @@ public class DogRepository {
     // Room executes all queries on a separate thread.
     // Observed LiveData will notify the observer when the data has changed.
     LiveData<List<DogEntity>> getAllDogs() {
+
         return mAllDogs;
     }
 
