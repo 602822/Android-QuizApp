@@ -98,6 +98,7 @@ public class QuizViewModel extends AndroidViewModel {
 
     public void pickRandomDog(List<DogEntity> dogs) { //Sets the value of dogPicked
 
+
         DogEntity dog;
         if (dogs == null || dogs.isEmpty()) {
             return;
