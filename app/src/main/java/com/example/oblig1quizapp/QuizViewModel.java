@@ -200,7 +200,7 @@ public class QuizViewModel extends AndroidViewModel {
 
         //Set the Dog image
         if (dog.getImageResource() != 0) {
-            //  dogImageView.setImageResource(dog.getImageResource());
+            //  dogImageView.setImageResource(dog.getImageResource()); //setImageResource reads from disk and will bottleneck the app
             Glide.with(context).load(dog.getImageResource()).into(dogImageView); // use glide to load image from resource async
         } else if (dog.getImageUri() != null) {
             //  dogImageView.setImageURI(imageUri);  // seImageUri reads from disk and will bottleneck the app
