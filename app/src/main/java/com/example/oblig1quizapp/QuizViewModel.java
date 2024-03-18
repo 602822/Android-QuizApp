@@ -223,7 +223,7 @@ public class QuizViewModel extends AndroidViewModel {
         {
 
             checkAnswer(button, answerView);
-            playAgain(dogImageView, button, button2, button3, dogs, context); ////!!!!!!!
+            playAgain(dogImageView, button, button2, button3, dogs, context);
 
         });
 

@@ -25,7 +25,7 @@ public class QuizActivity extends AppCompatActivity {
                 .detectDiskWrites()
                 .detectNetwork()   // or .detectAll() for all detectable problems
                 .penaltyLog()
-                        .detectAll()
+                .detectAll()
                 .build());
 
         StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
@@ -33,7 +33,7 @@ public class QuizActivity extends AppCompatActivity {
                 .detectLeakedClosableObjects()
                 .penaltyLog()
                 .penaltyDeath()
-                        .detectAll()
+                .detectAll()
                 .build());
         super.onCreate(savedInstanceState);
 
@@ -78,8 +78,6 @@ public class QuizActivity extends AppCompatActivity {
         //Logic for initial state of the game
         //will only start the quiz once i have access to the dog objects
         quizViewModel.getAllDogs().observe(this, dogs -> {
-            //   quizViewModel.pickRandomDog(dogs);
-            //   quizViewModel.fillButtonOptionsList(dogs);
             quizViewModel.play(dogImageView, button, button2, button3, this);
             //The buttons will now call the checkAnswer and playAgain methods when clicked
             quizViewModel.setButtonClickListeners(dogs, button, button2, button3, answerView, dogImageView, this);
