@@ -31,8 +31,6 @@ public class QuizViewModel extends AndroidViewModel {
 
     private MutableLiveData<List<String>> buttonOptions = new MutableLiveData<>();
 
-    //  private MutableLiveData<List<DogEntity>> dogs = new MutableLiveData<>();
-
 
     public QuizViewModel(Application application) {
         super(application);
