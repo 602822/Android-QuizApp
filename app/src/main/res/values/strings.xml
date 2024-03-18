@@ -5,4 +5,9 @@
     <string name="addButtonText">Select an image</string>
     <string name="sortButtonText">Sort</string>
     <string name="imageDescription">Dog Image</string>
+    <string name="add_a_dog_breed_here">Add a dog breed here</string>
+    <string name="your_score">Your Score:</string>
+    <string name="button_1">Button 1</string>
+    <string name="button_2">Button 2</string>
+    <string name="button_3">Button 3</string>
 </resources>

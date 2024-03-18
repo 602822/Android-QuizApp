@@ -53,7 +53,7 @@
                     android:id="@+id/scoreText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Your Score: "
+                    android:text="@string/your_score"
 
                     />
 
@@ -97,7 +97,7 @@
                     android:id="@+id/button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Button 1"
+                    android:text="@string/button_1"
                     />
 
                 <Button
@@ -106,7 +106,7 @@
                     android:id="@+id/button2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Button 2"
+                    android:text="@string/button_2"
                     />
 
             </LinearLayout>
@@ -118,7 +118,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:gravity="center"
-                android:text="Button 3" />
+                android:text="@string/button_3" />
 
         </LinearLayout>
 

@@ -36,7 +36,7 @@
             android:layout_height="50dp"
             android:layout_margin="20dp"
             android:autofillHints="Dog Breed"
-            android:hint="Add a dog breed here"
+            android:hint="@string/add_a_dog_breed_here"
             android:inputType="text" />
 
         <Button
