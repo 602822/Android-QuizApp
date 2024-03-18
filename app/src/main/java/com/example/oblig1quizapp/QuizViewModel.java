@@ -79,17 +79,16 @@ public class QuizViewModel extends AndroidViewModel {
     }
 
 
-    public void play(ImageView dogimageView, Button button1, Button button2, Button button3) {
+    public void play(ImageView dogimageView, Button button1, Button button2, Button button3, Context context) {
 
         DogEntity dog = dogPicked.getValue();
 
-        int imageResource = dog.getImageResource();
-        Uri imageUri = Converters.fromString(dog.getImageUri());
-
-        if (imageResource != 0) {
-            dogimageView.setImageResource(dog.getImageResource());
+        if (dog.getImageResource() != 0) {
+            //  dogimageView.setImageResource(dog.getImageResource()); //setImageResource reads from disk and will bottleneck the app
+            Glide.with(context).load(dog.getImageResource()).into(dogimageView); // use glide to load image from resource async
         } else if (dog.getImageUri() != null) {
-            dogimageView.setImageURI(imageUri);
+            // dogimageView.setImageURI(imageUri); // seImageUri reads from disk and will bottleneck the app
+            Glide.with(context).load(dog.getImageUri()).into(dogimageView); // use glide to load image from uri async
         } else {
             Log.d("test", "No image URI or imageResource");
         }
@@ -100,7 +99,7 @@ public class QuizViewModel extends AndroidViewModel {
 
 
     public void pickRandomDog(List<DogEntity> dogs) { //Sets the value of dogPicked
-        // List<DogEntity> dogs = mAllDogs.getValue();
+
         DogEntity dog;
         if (dogs == null || dogs.isEmpty()) {
             return;
@@ -112,9 +111,9 @@ public class QuizViewModel extends AndroidViewModel {
         Random random = new Random();
         int randomIndex = random.nextInt(dogs.size());
 
-        do {
-            dog = dogs.get(randomIndex);
-        } while (dog.equals(dogPicked.getValue()));
+
+        dog = dogs.get(randomIndex);
+
 
         Log.d("quizDebug", "dogPicked: " + dog.getImageText());
         dogPicked.setValue(dog);
@@ -126,8 +125,6 @@ public class QuizViewModel extends AndroidViewModel {
 
         List<String> buttonOptions = getButtonOptions().getValue();
         buttonOptions.clear();
-
-        // List<DogEntity> dogs = mAllDogs.getValue();
 
         DogEntity dog = dogPicked.getValue();
 
@@ -190,28 +187,25 @@ public class QuizViewModel extends AndroidViewModel {
 
         pickRandomDog(dogs);
 
+
         DogEntity dog = dogPicked.getValue();
-
-
-        int imageResource = dog.getImageResource();
-        Uri imageUri = Converters.fromString(dog.getImageUri());
-
 
         //update Rounds played
         int roundsPlayed = roundsplayed.getValue() != null ? roundsplayed.getValue() : 1;
         roundsplayed.setValue(roundsPlayed + 1);
         Log.d("quizDebug", "Rounds played: " + roundsPlayed);
 
-
         //Set the Dog image
-        if (imageResource != 0) {
-            dogImageView.setImageResource(dog.getImageResource());
+        if (dog.getImageResource() != 0) {
+            //  dogImageView.setImageResource(dog.getImageResource());
+            Glide.with(context).load(dog.getImageResource()).into(dogImageView); // use glide to load image from resource async
         } else if (dog.getImageUri() != null) {
-          //  dogImageView.setImageURI(imageUri);  // seImageUri reads from disk and will bottleneck the app
-            Glide.with(context).load(imageUri).into(dogImageView); // use glide to load image from uri async
+            //  dogImageView.setImageURI(imageUri);  // seImageUri reads from disk and will bottleneck the app
+            Glide.with(context).load(dog.getImageUri()).into(dogImageView); // use glide to load image from uri async
         } else {
             Log.d("test", "No image URI or imageResource");
         }
+
 
         //Update the buttons
         fillButtonOptionsList(dogs);
