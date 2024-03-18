@@ -28,6 +28,8 @@ public class QuizViewModel extends AndroidViewModel {
 
     private MutableLiveData<List<String>> buttonOptions = new MutableLiveData<>();
 
+    //  private MutableLiveData<List<DogEntity>> dogs = new MutableLiveData<>();
+
 
     public QuizViewModel(Application application) {
         super(application);
@@ -44,8 +46,8 @@ public class QuizViewModel extends AndroidViewModel {
             public void onChanged(List<DogEntity> dogs) {
                 if (dogs != null && !dogs.isEmpty()) {
 
-                    pickRandomDog();
-                    fillImageTextsArray();
+                    pickRandomDog(dogs);
+                    fillButtonOptionsList(dogs);
                 }
             }
         });
@@ -94,8 +96,8 @@ public class QuizViewModel extends AndroidViewModel {
     }
 
 
-    private void pickRandomDog() { //Sets the value of dogPicked
-        List<DogEntity> dogs = mAllDogs.getValue();
+    public void pickRandomDog(List<DogEntity> dogs) { //Sets the value of dogPicked
+        // List<DogEntity> dogs = mAllDogs.getValue();
         DogEntity dog;
         if (dogs == null || dogs.isEmpty()) {
             return;
@@ -116,13 +118,13 @@ public class QuizViewModel extends AndroidViewModel {
 
     }
 
-    public void fillImageTextsArray() {
+    public void fillButtonOptionsList(List<DogEntity> dogs) {
 
 
         List<String> buttonOptions = getButtonOptions().getValue();
         buttonOptions.clear();
 
-        List<DogEntity> dogs = mAllDogs.getValue();
+        // List<DogEntity> dogs = mAllDogs.getValue();
 
         DogEntity dog = dogPicked.getValue();
 
@@ -180,10 +182,10 @@ public class QuizViewModel extends AndroidViewModel {
         }
     }
 
-    public void playAgain(ImageView dogImageView, Button button1, Button button2, Button button3) {
+    public void playAgain(ImageView dogImageView, Button button1, Button button2, Button button3, List<DogEntity> dogs) {
 
 
-        pickRandomDog();
+        pickRandomDog(dogs);
 
         DogEntity dog = dogPicked.getValue();
 
@@ -208,11 +210,36 @@ public class QuizViewModel extends AndroidViewModel {
         }
 
         //Update the buttons
-        fillImageTextsArray();
+        fillButtonOptionsList(dogs);
         addTextToButtons(button1, button2, button3);
 
     }
 
+    public void setButtonClickListeners(List<DogEntity> dogs, Button button, Button button2, Button button3, TextView answerView, ImageView dogImageView) {
+
+
+        button.setOnClickListener(v ->
+        {
+
+            checkAnswer(button, answerView);
+            playAgain(dogImageView, button, button2, button3, dogs);
+
+        });
+
+        button2.setOnClickListener(v ->
+        {
+            checkAnswer(button2, answerView);
+            playAgain(dogImageView, button, button2, button3, dogs);
+
+        });
+
+        button3.setOnClickListener(v ->
+        {
+            checkAnswer(button3, answerView);
+            playAgain(dogImageView, button, button2, button3, dogs);
+
+        });
+    }
 
 }
 

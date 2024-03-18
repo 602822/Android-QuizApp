@@ -1,21 +1,16 @@
 package com.example.oblig1quizapp;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.res.Configuration;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 public class QuizActivity extends AppCompatActivity {
 
@@ -61,53 +56,21 @@ public class QuizActivity extends AppCompatActivity {
         Button button = findViewById(R.id.button);
         Button button2 = findViewById(R.id.button2);
         Button button3 = findViewById(R.id.button3);
+        TextView answerView = findViewById(R.id.correctAnswerOrNot);
+
 
         //Logic for initial state of the game
         //will only start the quiz once i have access to the dog objects
         quizViewModel.getAllDogs().observe(this, dogs -> {
+            //   quizViewModel.pickRandomDog(dogs);
+            //   quizViewModel.fillButtonOptionsList(dogs);
             quizViewModel.play(dogImageView, button, button2, button3);
+            //The buttons will now call the checkAnswer and playAgain methods when clicked
+            quizViewModel.setButtonClickListeners(dogs, button, button2, button3, answerView, dogImageView);
         });
-
-
-        //The buttons will now call the checkAnswer and playAgain methods when clicked
-        setButtonClickListeners();
 
 
     }
 
-
-    public void setButtonClickListeners() {
-
-
-        Button button = findViewById(R.id.button);
-        Button button2 = findViewById(R.id.button2);
-        Button button3 = findViewById(R.id.button3);
-
-        TextView answerView = findViewById(R.id.correctAnswerOrNot);
-
-        ImageView dogImageView = findViewById(R.id.quizDogImage);
-
-        button.setOnClickListener(v ->
-        {
-
-            quizViewModel.checkAnswer(button, answerView);
-            quizViewModel.playAgain(dogImageView, button, button2, button3);
-
-        });
-
-        button2.setOnClickListener(v ->
-        {
-            quizViewModel.checkAnswer(button2, answerView);
-            quizViewModel.playAgain(dogImageView, button, button2, button3);
-
-        });
-
-        button3.setOnClickListener(v ->
-        {
-            quizViewModel.checkAnswer(button3, answerView);
-            quizViewModel.playAgain(dogImageView, button, button2, button3);
-
-        });
-    }
 
 }
