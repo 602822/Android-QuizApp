@@ -111,9 +111,12 @@ public class QuizViewModel extends AndroidViewModel {
         Random random = new Random();
         int randomIndex = random.nextInt(dogs.size());
 
-
+        /* Causes the app to crash
+        do {
+            dog = dogs.get(randomIndex);
+        } while (dog.equals(dogPicked.getValue()));
+*/
         dog = dogs.get(randomIndex);
-
 
         Log.d("quizDebug", "dogPicked: " + dog.getImageText());
         dogPicked.setValue(dog);
