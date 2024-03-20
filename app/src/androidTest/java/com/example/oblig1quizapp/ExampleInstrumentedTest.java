@@ -20,6 +20,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
+import androidx.test.core.app.ActivityScenario;
+import androidx.test.core.app.ApplicationProvider;
 import androidx.test.espresso.intent.Intents;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 
@@ -95,6 +97,14 @@ public class ExampleInstrumentedTest {
         onView(allOf(withId(R.id.textView), withText("Golden Retriever"))).check(matches(isDisplayed()));
         onView(allOf(withId(R.id.textView), withText("Golden Retriever"))).perform(click());
         onView(allOf(withId(R.id.textView), withText("Golden Retriever"))).check(doesNotExist());
+    }
+
+    @Test
+    public void checkRoundsUpdates() {
+        Intent intent = new Intent(ApplicationProvider.getApplicationContext(), QuizActivity.class);
+        ActivityScenario<QuizActivity> scenario = ActivityScenario.launch(intent);
+        onView(withId(R.id.button)).perform(click());
+        onView(withId(R.id.rounds)).check(matches(withText("Round: 2")));
     }
 
     @Test
