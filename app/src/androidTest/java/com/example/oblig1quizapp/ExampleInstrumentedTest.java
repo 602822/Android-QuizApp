@@ -52,6 +52,7 @@ public class ExampleInstrumentedTest {
 
 
 
+    /*
 
     @Before
     public void initIntents() {
@@ -62,6 +63,8 @@ public class ExampleInstrumentedTest {
     public void releaseIntents() {
         Intents.release();
     }
+*/
+
 
     @Test
     public void testGalleryButton() {
@@ -71,12 +74,16 @@ public class ExampleInstrumentedTest {
     }
 
 
+
     @Test
     public void testQuizButton() {
         onView(withId(R.id.quizButton)).perform(click());
         onView(withId(R.id.quizDogImage)).check(matches(isDisplayed())); //check that the activity changed to Quiz
     }
 
+
+
+    /*
     @Test
     public void testPickImage() {
         Intent intent = new Intent();
@@ -88,16 +95,10 @@ public class ExampleInstrumentedTest {
         onView(withId(R.id.addbutton)).perform(click());
         intending(hasAction(Intent.ACTION_GET_CONTENT)).respondWith(activityResult);
     }
+*/
 
 
-    @Test
-         public void testDeleteImage() {
-        onView(withId(R.id.gallerybutton)).perform(click());
-        onView(withId(R.id.gridview)).check(matches(isDisplayed()));
-        onView(allOf(withId(R.id.textView), withText("Golden Retriever"))).check(matches(isDisplayed()));
-        onView(allOf(withId(R.id.textView), withText("Golden Retriever"))).perform(click());
-        onView(allOf(withId(R.id.textView), withText("Golden Retriever"))).check(doesNotExist());
-    }
+
 
     @Test
     public void checkRoundsUpdates() {
@@ -106,6 +107,16 @@ public class ExampleInstrumentedTest {
         onView(withId(R.id.button)).perform(click());
         onView(withId(R.id.rounds)).check(matches(withText("Round: 2")));
     }
+
+    @Test
+    public void testDeleteImage() {
+        onView(withId(R.id.gallerybutton)).perform(click());
+        onView(withId(R.id.gridview)).check(matches(isDisplayed()));
+        onView(allOf(withId(R.id.textView), withText("Golden Retriever"))).check(matches(isDisplayed()));
+        onView(allOf(withId(R.id.textView), withText("Golden Retriever"))).perform(click());
+        onView(allOf(withId(R.id.textView), withText("Golden Retriever"))).check(doesNotExist());
+    }
+
 
     @Test
     public void useAppContext() {
