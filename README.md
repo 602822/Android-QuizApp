@@ -16,6 +16,12 @@
 
 ## Test Results
 
+After analysing ./gradlew connectedAndroidTest –info
+I conclude that what happends in the background is:
+- The dependencies gets Transformed
+- Check if Tasks are UP-TO-DATE
+- Starting the java.exe process from the app directory
+
 ![Test1](test1.png)
 ![Test2](test2.png)
 ![Test3](test3.png)
