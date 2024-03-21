@@ -3,11 +3,14 @@ package com.example.oblig1quizapp;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 
+import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.intent.Intents.intending;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasAction;
 
+import static androidx.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -19,6 +22,8 @@ import android.app.Instrumentation;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.core.app.ApplicationProvider;
@@ -51,9 +56,6 @@ public class ExampleInstrumentedTest {
             = new ActivityScenarioRule<>(MainActivity.class);
 
 
-
-    /*
-
     @Before
     public void initIntents() {
         Intents.init();
@@ -63,7 +65,6 @@ public class ExampleInstrumentedTest {
     public void releaseIntents() {
         Intents.release();
     }
-*/
 
 
     @Test
@@ -74,7 +75,6 @@ public class ExampleInstrumentedTest {
     }
 
 
-
     @Test
     public void testQuizButton() {
         onView(withId(R.id.quizButton)).perform(click());
@@ -82,22 +82,29 @@ public class ExampleInstrumentedTest {
     }
 
 
-
-    /*
+    //attempt at creating a test for adding images
+    //Not working
     @Test
-    public void testPickImage() {
-        Intent intent = new Intent();
-        Uri uri = Uri.parse("test");
-        intent.putExtra("imageUri",uri);
+    public void pickDogImage() {
 
+        Intent imageIntent = new Intent();
+        Uri fakeUri = Uri.parse("fakeUri");
+        imageIntent.setData(fakeUri);
+
+        Intent intent = new Intent(ApplicationProvider.getApplicationContext(), GalleryActivity.class);
+        ActivityScenario<QuizActivity> scenario = ActivityScenario.launch(intent);
+
+        onView(withId(R.id.textinput)).perform(typeText("Test"), closeSoftKeyboard());
         Instrumentation.ActivityResult activityResult = new Instrumentation.ActivityResult(Activity.RESULT_OK, intent);
-        onView(withId(R.id.gallerybutton)).perform(click());
-        onView(withId(R.id.addbutton)).perform(click());
         intending(hasAction(Intent.ACTION_GET_CONTENT)).respondWith(activityResult);
+
+        onView(withId(R.id.addbutton)).perform(click());
+
+        //Check that the object was added to the gridView somehow
+        onView(withId(R.id.gridview))
+                .check(matches(isDisplayed()));
+
     }
-*/
-
-
 
 
     @Test

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="ExampleInstrumentedTest">
+      <entry key="addDogImage()">
         <State />
       </entry>
       <entry key="app">
@@ -21,56 +21,17 @@
           <timeTargetWasSelectedWithDropDown value="2024-03-13T11:10:15.704358700Z" />
         </State>
       </entry>
+      <entry key="checkRoundsUpdates()">
+        <State />
+      </entry>
       <entry key="testDeleteImage()">
         <State />
       </entry>
-      <entry key="testNewDogDisplayed()">
-        <State>
-          <targetSelectedWithDropDown>
-            <Target>
-              <type value="QUICK_BOOT_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\vefje\.android\avd\Pixel_6_API_34.avd" />
-                </Key>
-              </deviceKey>
-            </Target>
-          </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-02-29T11:09:00.746176800Z" />
-        </State>
-      </entry>
-      <entry key="testPickImage()">
-        <State>
-          <targetSelectedWithDropDown>
-            <Target>
-              <type value="QUICK_BOOT_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\vefje\.android\avd\Pixel_6_API_34.avd" />
-                </Key>
-              </deviceKey>
-            </Target>
-          </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-02-29T08:39:41.212298600Z" />
-        </State>
+      <entry key="testGalleryButton()">
+        <State />
       </entry>
       <entry key="testQuizButton()">
-        <State>
-          <targetSelectedWithDropDown>
-            <Target>
-              <type value="QUICK_BOOT_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\vefje\.android\avd\Pixel_6_API_34.avd" />
-                </Key>
-              </deviceKey>
-            </Target>
-          </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-02-29T08:33:16.339614200Z" />
-        </State>
+        <State />
       </entry>
     </value>
   </component>
