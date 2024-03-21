@@ -85,7 +85,7 @@ public class ExampleInstrumentedTest {
     //attempt at creating a test for adding images
     //Not working
     @Test
-    public void pickDogImage() {
+    public void testPickDogImage() {
 
         Intent imageIntent = new Intent();
         Uri fakeUri = Uri.parse("fakeUri");
@@ -100,7 +100,8 @@ public class ExampleInstrumentedTest {
 
         onView(withId(R.id.addbutton)).perform(click());
 
-        //Check that the object was added to the gridView somehow
+        //Check that the object was added in the gridView somehow
+        //Currently i am only checking if the gridView is displayed on the screen
         onView(withId(R.id.gridview))
                 .check(matches(isDisplayed()));
 
