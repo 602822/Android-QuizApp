@@ -27,10 +27,10 @@
       <entry key="testDeleteImage()">
         <State />
       </entry>
-      <entry key="testGalleryButton()">
+      <entry key="testQuizButton()">
         <State />
       </entry>
-      <entry key="testQuizButton()">
+      <entry key="testScoreUpdate()">
         <State />
       </entry>
     </value>

@@ -82,6 +82,18 @@ public class ExampleInstrumentedTest {
     }
 
 
+    // 1/3 chance of passing
+    //The test will pass if the answer selected was correct.
+    //The test will fail if the answer selected was false.
+    @Test
+    public void testScoreUpdate() {
+        Intent intent = new Intent(ApplicationProvider.getApplicationContext(), QuizActivity.class);
+        ActivityScenario<QuizActivity> scenario = ActivityScenario.launch(intent);
+        onView(withId(R.id.button)).perform(click());
+        onView(withId(R.id.scoreText)).check(matches(withText("Your Score: 1")));
+
+    }
+
     //attempt at creating a test for adding images
     //Not working
     @Test
