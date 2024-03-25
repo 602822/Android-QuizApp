@@ -28,17 +28,25 @@
 - adb install C:\Users\vefje\AndroidStudioProjects\Oblig1QuizApp\app\build\outputs\apk\androidTest\debug\app-debug-androidTest.apk
 
 ## Test Gallery Button
-- Tests the  gallery button in the MainActivity. Tests whether the navigation works or not
-![Test1](test1.png)
+- Tests the  gallery button in the MainActivity. Tests whether the navigation works or not. (MainActivity)
+![Test Gallery Button](test1.png)
 
 ## Test Quiz Button 
-- Tests the quiz button in the MainActivity. Tests whether the navigation works or not
-![Test2](test2.png)
+- Tests the quiz button in the MainActivity. Tests whether the navigation works or not. (MainActivity)
+![Test Quiz Button](test2.png)
 
 ## Test checkRoundsUpdate
-- Tests if the score gets updated in the Quiz when the user presses a button
-![Test3](test3.png)
+- Tests if the score gets updated in the Quiz when the user presses a button. (QuizActivity)
+![Test checkRoundsUpdate](test3.png)
 
 ## Test deleteImage
 - Tests if the dog object you click on gets deleted from the GridView if you click on it. (GalleryActivity)
-![Test4](test4.png)
+![Test deleteImage](test4.png)
+
+## Test testScoreUpdate
+- Tests whether the score updates when clicking an answer. (QuizActivity)
+- The test will pass if the answer selected was correct, the test will fail if the answer selected was wrong.
+   ![Test testScoreUpdate](test5.png)
+   ![Test testScoreUpdate](test5WrongAnswer.png)
+  
+
