@@ -45,3 +45,4 @@
 
 ## Test testScoreUpdate
 - Tests whether the score updates when clicking an answer. (QuizActivity)
+- The test will pass if the answer selected was correct, the test will fail if the answer selected was wrong.
