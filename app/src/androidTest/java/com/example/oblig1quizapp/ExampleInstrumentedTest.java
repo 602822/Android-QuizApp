@@ -88,7 +88,7 @@ public class ExampleInstrumentedTest {
     @Test
     public void testScoreUpdate() {
         Intent intent = new Intent(ApplicationProvider.getApplicationContext(), QuizActivity.class);
-        ActivityScenario<QuizActivity> scenario = ActivityScenario.launch(intent);
+        ActivityScenario.launch(intent);
         onView(withId(R.id.button)).perform(click());
         onView(withId(R.id.scoreText)).check(matches(withText("Your Score: 1")));
 
