@@ -35,6 +35,7 @@ public class QuizViewModel extends AndroidViewModel {
 
     private MutableLiveData<List<String>> buttonOptions = new MutableLiveData<>();
 
+    private Observer<List<DogEntity>> observer;
 
     public QuizViewModel(Application application) {
         super(application);
@@ -46,7 +47,7 @@ public class QuizViewModel extends AndroidViewModel {
 
         //Will set the initial value for dogPicked and buttonOptions when i have access
         // to the dog objects from room database
-        mAllDogs.observeForever(new Observer<List<DogEntity>>() {
+        mAllDogs.observeForever( observer = new Observer<List<DogEntity>>() {
             @Override
             public void onChanged(List<DogEntity> dogs) {
                 if (dogs != null && !dogs.isEmpty()) {
@@ -91,6 +92,12 @@ public class QuizViewModel extends AndroidViewModel {
     }
 
 
+    //Avoids memory leaks
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        mAllDogs.removeObserver(observer);
+    }
 }
 
 

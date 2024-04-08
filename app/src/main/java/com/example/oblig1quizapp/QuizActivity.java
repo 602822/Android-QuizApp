@@ -46,7 +46,7 @@ public class QuizActivity extends AppCompatActivity {
             setContentView(R.layout.activity_quiz);
         }
 
-        //Assosiate the ViewModel with the activity
+        //Associate the ViewModel with the activity
         quizViewModel = new ViewModelProvider(this).get(QuizViewModel.class);
 
         button = findViewById(R.id.button);
