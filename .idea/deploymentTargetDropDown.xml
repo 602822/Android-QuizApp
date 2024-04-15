@@ -2,7 +2,26 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="addDogImage()">
+      <entry key="GalleryTests">
+        <State>
+          <targetSelectedWithDropDown>
+            <Target>
+              <type value="QUICK_BOOT_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="C:\Users\vefje\.android\avd\Pixel_6_API_34.avd" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </targetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-04-15T12:44:07.917631400Z" />
+        </State>
+      </entry>
+      <entry key="MainActivityTests">
+        <State />
+      </entry>
+      <entry key="QuizTests">
         <State />
       </entry>
       <entry key="app">
@@ -21,16 +40,10 @@
           <timeTargetWasSelectedWithDropDown value="2024-03-13T11:10:15.704358700Z" />
         </State>
       </entry>
-      <entry key="checkRoundsUpdates()">
+      <entry key="testPickDogImage()">
         <State />
       </entry>
-      <entry key="testDeleteImage()">
-        <State />
-      </entry>
-      <entry key="testQuizButton()">
-        <State />
-      </entry>
-      <entry key="testScoreUpdate()">
+      <entry key="testScoreUpdate() (1)">
         <State />
       </entry>
     </value>

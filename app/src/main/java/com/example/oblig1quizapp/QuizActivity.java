@@ -33,6 +33,8 @@ public class QuizActivity extends AppCompatActivity {
 
     ImageView dogImageView;
 
+    DogEntity dog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -121,7 +123,7 @@ public class QuizActivity extends AppCompatActivity {
 
         MutableLiveData<DogEntity> dogPicked = quizViewModel.getDogPicked();
 
-        DogEntity dog = dogPicked.getValue();
+         dog = dogPicked.getValue();
 
         if (button.getText().equals(dog.getImageText())) {
             answerView.setText("Correct Answer!");

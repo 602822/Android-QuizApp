@@ -92,7 +92,7 @@ public class QuizViewModel extends AndroidViewModel {
     }
 
 
-    //Avoids memory leaks
+    //Removes the oberver to avoid memory leaks
     @Override
     protected void onCleared() {
         super.onCleared();
